@@ -2,9 +2,13 @@
 import { reactive, onMounted, computed } from "vue";
 import SimpleKeyboard from "./components/SimpleKeyboard.vue"
 import WordRow from "./components/WordRow.vue"
+import Words from "an-array-of-french-words"
+
+const words = Words.filter(w => w.length === 5 && /^[a-zA-Zéèâ]+$/.test(w))
+const word = words[Math.floor(Math.random() * words.length)].replace(/[â]/g, "a").replace(/[éè]/g, "e")
 
 const state = reactive({
-  solution: "books",
+  solution: word,
   guesses: ["", "", "", "", "", ""],
   currentGuessIndex: 0,
   guessedLetters: {
