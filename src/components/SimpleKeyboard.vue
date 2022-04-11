@@ -12,17 +12,21 @@ const props = defineProps({
 const keyboard = ref(null)
 
 const onKeyPress = (button) => {
-    emit("onKeyPress", button)
+    emit("onKeyPress", button.toLowerCase())
 }
 
 onMounted(() => {
     keyboard.value = new Keyboard("simple-keyboard", {
         layout: {
             default: [
-                "a z e r t y u i o p",
-                "q s d f g h j k l m",
-                "{bksp} w x c v b n {enter}"
+                "A Z E R T Y U I O P",
+                "Q S D F G H J K L M",
+                "W X C V B N {bksp} {enter}"
             ]
+        },
+        display: {
+            '{bksp}': '❌',
+            '{enter}': '✅',
         },
         onKeyPress: onKeyPress,
     })
@@ -57,10 +61,12 @@ div.miss {
     @apply bg-gray-500 !important;
     @apply text-white;
 }
+
 div.found {
     @apply bg-green-600 !important;
     @apply text-white;
 }
+
 div.hint:not(.found) {
     @apply bg-yellow-500 !important;
     @apply text-white;
