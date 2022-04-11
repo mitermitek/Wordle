@@ -69,7 +69,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-col justify-evenly h-screen max-w-md mx-auto">
+  <div class="flex flex-col justify-between h-screen max-w-md mx-auto">
     <div v-if="!wonGame && !lostGame" class="bg-blue-100 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3"
       role="alert">
       <div class="flex">
