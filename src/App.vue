@@ -5,6 +5,7 @@ import WordRow from "./components/WordRow.vue"
 import Words from "an-array-of-french-words"
 
 const words = Words.filter(w => w.length === 5 && /^[a-zA-Zéèâ]+$/.test(w))
+const wordsWithoutAccents = words.map(w => w.replace(/[â]/g, "a").replace(/[éè]/g, "e"))
 const word = words[Math.floor(Math.random() * words.length)]
 const wordToGuess = word.replace(/[â]/g, "a").replace(/[éè]/g, "e")
 
@@ -34,7 +35,7 @@ const handleInput = (key) => {
   const currentGuess = state.guesses[state.currentGuessIndex]
 
   if (key == "{enter}") {
-    if (currentGuess.length == 5 && words.includes(currentGuess)) {
+    if (currentGuess.length == 5 && wordsWithoutAccents.includes(currentGuess)) {
       state.currentGuessIndex++;
 
       for (var i = 0; i < currentGuess.length; i++) {
